@@ -1,7 +1,4 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
 
 let Person;
 
@@ -70,3 +67,7 @@ exports.createManyPeople = createManyPeople;
 exports.removeById = removeById;
 exports.removeManyPeople = removeManyPeople;
 exports.queryChain = queryChain;
+
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URI);
