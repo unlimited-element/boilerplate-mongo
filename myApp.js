@@ -19,11 +19,14 @@ const Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
   return human = new Person({
-    name: String,
-    age: Number,
-    favoriteFoods: [String]
+    name: "Human Doe",
+    age: 20,
+    favoriteFoods: ["cake", "peas", "carrots"]
   });
   human.save(function(err, data) {
+    if (err) {
+      console.log(err)
+    }
     done(null, data);
   });
 };
