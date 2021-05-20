@@ -31,14 +31,14 @@ const createAndSavePerson = (done) => {
   });
 };
 
-
+var arrayOfPeople = [
+{ name: 'Will', age: 22, favoriteFoods: ["milk", "juice", "cereal"] },
+{ name: 'Riker', age: 23, favoriteFoods: ["rice", "chicken", "waffles"] },
+{ name: 'Geordi', age: 24, favoriteFoods: ["cereal", "corn", "bacon"] },
+{ name: 'LaForge', age: 25, favoriteFoods: ["muffins", "sundaes", "cake"] }
+];
 const createManyPeople = (arrayOfPeople, done) => {
-  arrayOfPeople = Person.create([
-  { name: 'Will', age: 22, favoriteFoods: ["milk", "juice", "cereal"] },
-  { name: 'Riker', age: 23, favoriteFoods: ["rice", "chicken", "waffles"] },
-  { name: 'Geordi', age: 24, favoriteFoods: ["cereal", "corn", "bacon"] },
-  { name: 'LaForge', age: 25, favoriteFoods: ["muffins", "sundaes", "cake"] }
-], function(err, data) {
+  Person.create(arrayOfPeople, function(err, data) {
     if (err) {
       return console.log(err)
     }
