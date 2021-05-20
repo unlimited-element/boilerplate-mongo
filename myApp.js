@@ -1,6 +1,18 @@
 require('dotenv').config();
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
-let Person;
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("We're connected");
+});
+
+const personSchema = new mongoose.Schema({
+  name: String
+});
+
+const Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
@@ -67,7 +79,3 @@ exports.createManyPeople = createManyPeople;
 exports.removeById = removeById;
 exports.removeManyPeople = removeManyPeople;
 exports.queryChain = queryChain;
-
-
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URI);
