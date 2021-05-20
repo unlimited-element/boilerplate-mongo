@@ -2,35 +2,42 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
-var personSchema = new mongoose.Schema({
-  name: String,
+
+const personSchema = new mongoose.Schema({
+  name: { type: String, required: true },
   age: Number,
   favoriteFoods: [String]
 });
 
-/** 3) Create and Save a Person */
-var Person = mongoose.model('Person', personSchema);
+const Person = mongoose.model('Person', personSchema);
 
-var createAndSavePerson = function(done) {
-  var janeFonda = new Person({name: "Jane Fonda", age: 84, favoriteFoods: ["eggs", "fish", "fresh fruit"]});
 
-  janeFonda.save(function(err, data) {
-    if (err) return console.error(err);
-    done(null, data)
+const createAndSavePerson = (done) => {
+  const human = new Person({
+    name: "Human Doe",
+    age: 20,
+    favoriteFoods: ["cake", "peas", "carrots"]
+  });
+  human.save(function(err, data) {
+    if (err) {
+      return console.log(err)
+    }
+    done(null, data);
   });
 };
 
-/** 4) Create many People with `Model.create()` */
 var arrayOfPeople = [
-  {name: "Frankie", age: 74, favoriteFoods: ["Del Taco"]},
-  {name: "Sol", age: 76, favoriteFoods: ["roast chicken"]},
-  {name: "Robert", age: 78, favoriteFoods: ["wine"]}
+{ name: 'Will', age: 22, favoriteFoods: ["milk", "juice", "cereal"] },
+{ name: 'Riker', age: 23, favoriteFoods: ["rice", "chicken", "waffles"] },
+{ name: 'Geordi', age: 24, favoriteFoods: ["cereal", "corn", "bacon"] },
+{ name: 'LaForge', age: 25, favoriteFoods: ["muffins", "sundaes", "cake"] }
 ];
-
-var createManyPeople = function(arrayOfPeople, done) {
-  Person.create(arrayOfPeople, function (err, people) {
-    if (err) return console.log(err);
-    done(null, people);
+const createManyPeople = (arrayOfPeople, done) => {
+  Person.create(arrayOfPeople, function(err, data) {
+    if (err) {
+      return console.log(err)
+    }
+    done(null, data);
   });
 };
 
