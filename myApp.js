@@ -33,8 +33,8 @@ const createAndSavePerson = (done) => {
 
 
 const createManyPeople = (arrayOfPeople, done) => {
-  var arrayOfPeople = Person.create(
-  [{ name: 'Will', age: 22, favoriteFoods: ["milk", "juice", "cereal"] },
+  arrayOfPeople = Person.create([
+  { name: 'Will', age: 22, favoriteFoods: ["milk", "juice", "cereal"] },
   { name: 'Riker', age: 23, favoriteFoods: ["rice", "chicken", "waffles"] },
   { name: 'Geordi', age: 24, favoriteFoods: ["cereal", "corn", "bacon"] },
   { name: 'LaForge', age: 25, favoriteFoods: ["muffins", "sundaes", "cake"] }
