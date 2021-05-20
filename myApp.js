@@ -9,12 +9,12 @@ db.once('open', function() {
 });
 
 const personSchema = new mongoose.Schema({
-  name: String
+  name: { type: String, required: true },
+  age: Number,
+  favoriteFoods: [String]
 });
 
 const Person = mongoose.model('Person', personSchema);
-
-const Julius = new Person({ name: "Julius" });
 
 
 const createAndSavePerson = (done) => {
